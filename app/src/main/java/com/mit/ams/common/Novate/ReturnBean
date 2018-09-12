@@ -1,0 +1,9 @@
+package com.mit.ams.common.Novate;
+
+import android.provider.ContactsContract;
+
+public class ReturnBean {
+    private String code;
+    private ContactsContract.Data data;
+    private String message;
+    private boolean success;}
