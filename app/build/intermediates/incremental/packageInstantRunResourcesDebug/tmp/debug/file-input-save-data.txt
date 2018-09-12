@@ -1,0 +1,15 @@
+#Internal package file, do not edit.
+#Wed Aug 15 14:06:27 GMT+08:00 2018
+1.base=F\:\\Xiucheba\\AMS\\app\\build\\intermediates\\assets\\debug
+2.path=models/quality_model_secret.bin
+0.baseType=DIRECTORY
+2.base=F\:\\Xiucheba\\AMS\\app\\build\\intermediates\\assets\\debug
+2.set=ASSET
+1.baseType=DIRECTORY
+count=3
+1.set=ASSET
+0.path=aip.license
+0.set=ASSET
+0.base=F\:\\Xiucheba\\AMS\\app\\build\\intermediates\\assets\\debug
+2.baseType=DIRECTORY
+1.path=models/integrity_model_secret.bin

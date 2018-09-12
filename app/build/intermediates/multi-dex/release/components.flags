@@ -1,0 +1,42 @@
+-injars 'F:\androidws\Xiucheba\app\build\intermediates\transforms\jarMerging\release\0.jar'
+-outjars 'F:\androidws\Xiucheba\app\build\intermediates\multi-dex\release\componentClasses.jar'
+
+-libraryjars 'E:\adt-bundle-windows-x86_64-20130522\sdk\build-tools\26.0.2\lib\shrinkedAndroid.jar'
+
+-forceprocessing
+-dontoptimize
+-dontobfuscate
+-dontusemixedcaseclassnames
+-dontpreverify
+-dontnote **
+-dontwarn **
+-printconfiguration 'F:\androidws\Xiucheba\app\build\intermediates\multi-dex\release\components.flags'
+
+
+# Referenced at F:\androidws\Xiucheba\app\build\intermediates\manifests\full\release\AndroidManifest.xml:44
+-keep class com.mit.xiucheba.application.MyApplication {
+    <init>(...);
+}
+
+-keep public class * extends android.app.Instrumentation {
+    <init>();
+}
+
+-keep public class * extends android.app.Application {
+    <init>();
+    void attachBaseContext(android.content.Context);
+}
+
+-keep public class * extends android.app.backup.BackupAgent {
+    <init>();
+}
+
+-keep public class * extends java.lang.annotation.Annotation {
+    <fields>;
+    <methods>;
+}
+
+-keep class com.android.tools.ir.** {
+    <fields>;
+    <methods>;
+}

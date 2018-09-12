@@ -1,0 +1,4 @@
+#Wed Sep 12 10:48:13 GMT+08:00 2018
+base.0=F\:\\Xiucheba\\AMS\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\89
+path.0=classes.dex
+renamed.0=classes.dex
