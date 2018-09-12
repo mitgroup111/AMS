@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="20dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:focusable="false"
+                android:clickable="false"
+                android:focusableInTouchMode="false"
+                android:id="@+id/insurance_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="中国人民保险公司"
+                android:textSize="16dp" />
+
+            <TextView
+                android:focusable="false"
+                android:clickable="false"
+                android:focusableInTouchMode="false"
+                android:id="@+id/insurance_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#a9aaa8"
+                android:text="95555" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:gravity="center">
+
+            <ImageView
+                android:focusable="false"
+                android:clickable="false"
+                android:focusableInTouchMode="false"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/dh" />
+        </LinearLayout>
+    </RelativeLayout>
+</LinearLayout>

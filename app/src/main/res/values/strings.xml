@@ -1,0 +1,57 @@
+<resources>
+    <string name="app_name">阳光钣喷</string>
+
+    <string name="shigudingsun">事故定损</string>
+    <string name="weixiudingsun">维修定损</string>
+
+    <string name="baoyang">保养记录</string>
+    <string name="car">我的汽车</string>
+    <string name="dianping">维修企业点评</string>
+    <string name="dingsun">定损查看</string>
+    <string name="exit">退出登录</string>
+    <string name="msg">我的信息</string>
+    <string name="pwd">修改密码</string>
+    <string name="weixiu">维修查看</string>
+    <string name="yuyue">维修预约管理</string>
+
+    <string name="login_tel">手机号</string>
+    <string name="vali">验证码</string>
+    <string name="login_pwd">密码</string>
+    <string name="re_pwd">确认密码</string>
+    <string name="login_ori_pwd">请输入原密码</string>
+    <string name="login_new_pwd">请输入新密码(6-18位)</string>
+    <string name="login_renew_pwd">请再次输入新密码</string>
+    <string name="sure">确  定</string>
+
+    <string name="btn_login">登 录</string>
+    <string name="btn_regist">注  册</string>
+    <string name="login_forget_pwd">忘记密码？ > </string>
+    <string name="login_register">立即注册 > </string>
+    <string name="login_now">已有账号，立即登录 > </string>
+
+    <string name="add_car">添加车辆</string>
+    <string name="next_step">下一步</string>
+    <string name="submit">提交</string>
+    <string name="damage_desc">请填写故障描述……</string>
+    <string name="pic_desc">请按提示上传照片，最多上传6张照片</string>
+
+    <string name="take_photo">拍摄</string>
+    <string name="pick_photo">从相册选择</string>
+    <string name="cancel">取消</string>
+
+    <string name="fac">修理厂</string>
+    <string name="tel">联系方式</string>
+    <string name="fac_addr">修理厂地址</string>
+    <string name="btn_yuyue">维修预约</string>
+
+    <string name="damage_yuyue">有定损预约</string>
+    <string name="no_damage_yuyue">无定损预约</string>
+
+    <string name="pick_date">上次保养日期</string>
+    <string name="add_maintain">新增保养记录</string>
+
+    <string name="uploadimg_vin">行驶证照片*</string>
+    <string name="uploadimg_total">整体外观照片*</string>
+    <string name="uploadimg_parts">受损部位照片*</string>
+    <string name="uploadimg_others">其他补充图片</string>
+</resources>

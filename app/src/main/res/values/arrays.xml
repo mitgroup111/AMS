@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="cities">
+        <item >烟台市</item>
+        <item >北京市</item>
+    </string-array>
+
+    <string-array name="cars">
+        <item>--请选择车辆--</item>
+    </string-array>
+
+    <string-array name="types">
+        <item>--请选择维修类型--</item>
+        <item>钣金项目</item>
+        <item>机修项目</item>
+        <item>电工项目</item>
+        <item>喷漆项目</item>
+        <item>拆装项目</item>
+    </string-array>
+</resources>

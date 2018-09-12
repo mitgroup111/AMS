@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.mit.ams.fragment.DamageFragment">
+
+    <FrameLayout
+        android:id="@+id/damage"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="56dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="148dp"
+            android:layout_margin="20dp"
+            android:background="@drawable/shape_corner_shigu"
+            android:padding="50dp">
+
+            <TextView
+                android:id="@+id/shigu_tv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@string/shigudingsun"
+                android:textColor="@color/white"
+                android:textSize="30dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="148dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="190dp"
+            android:background="@drawable/shape_corner_guzhang"
+            android:padding="50dp">
+
+            <TextView
+                android:id="@+id/weixiu_tv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@string/weixiudingsun"
+                android:textColor="@color/white"
+                android:textSize="30dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="149dp"
+            android:layout_height="58dp"
+            android:layout_gravity="bottom|center_horizontal">
+            <ImageView
+                android:layout_gravity="center"
+                android:id="@+id/insurance_list"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:scaleType="fitCenter"
+                android:background="@drawable/lp"/>
+        </LinearLayout>
+    </FrameLayout>
+</LinearLayout>

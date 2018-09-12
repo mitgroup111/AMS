@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.mit.ams.fragment.YuyueOneFragment">
+
+    <FrameLayout
+        android:id="@+id/damage"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="148dp"
+            android:layout_margin="20dp"
+            android:background="@drawable/shape_corner_shigu"
+            android:padding="50dp">
+
+            <TextView
+                android:id="@+id/damage_tv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@string/damage_yuyue"
+                android:textColor="@color/white"
+                android:textSize="30dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="148dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="190dp"
+            android:background="@drawable/shape_corner_guzhang"
+            android:padding="50dp">
+
+            <TextView
+                android:id="@+id/no_damage_tv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@string/no_damage_yuyue"
+                android:textColor="@color/white"
+                android:textSize="30dp" />
+        </LinearLayout>
+
+    </FrameLayout>
+</LinearLayout>
