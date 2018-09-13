@@ -4,25 +4,25 @@
         android:checkableBehavior="single">
         <item
             android:id="@+id/inputUser"
-            android:icon="@drawable/ico_yuyue"
+            android:icon="@drawable/ico_vip"
             android:checkable="true"
             android:title="会员管理"/>
         <item
             android:id="@+id/inputCar"
-            android:icon="@drawable/ico_dianping"
+            android:icon="@drawable/ico_car1"
 
             android:title="车辆管理"/>
         <item
             android:id="@+id/kanban"
-            android:icon="@drawable/ico_dianping"
+            android:icon="@drawable/ico_kanban"
             android:title="看板"/>
         <item
             android:id="@+id/task"
-            android:icon="@drawable/ico_dianping"
+            android:icon="@drawable/ico_gongdan"
             android:title="工单管理"/>
         <item
             android:id="@+id/exit"
-            android:icon="@drawable/ico_dianping"
+            android:icon="@drawable/ico_exit"
             android:title="退出"/>
 
     </group>
