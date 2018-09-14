@@ -12,12 +12,15 @@ import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.allenliu.versionchecklib.core.AllenChecker;
+import com.allenliu.versionchecklib.core.VersionParams;
 import com.blankj.utilcode.util.EncryptUtils;
 import com.mit.ams.R;
 import com.mit.ams.common.Constants;
 import com.mit.ams.common.Novate.MyAPI;
 import com.mit.ams.common.Novate.MyBaseSubscriber;
 import com.mit.ams.common.StringUtils;
+import com.mit.ams.service.VersionCheckService;
 import com.mit.ams.utils.LifePreferences;
 import com.tamic.novate.Novate;
 import com.tamic.novate.cache.CookieCacheImpl;
@@ -55,7 +58,27 @@ public class LoginActivity extends AppCompatActivity  {
         etUserPassword = (EditText) findViewById(R.id.userPassword);
         //添加监听
         loginBtn.setOnClickListener(listener);
+        //检查更新
+        checkVersion();
+    }
 
+    private void checkVersion(){
+        VersionParams.Builder builder = new VersionParams.Builder()
+                .setRequestUrl(Constants.WEB_DOMAIN + "/upload/version_new.txt")
+                .setService(VersionCheckService.class);
+        stopService(new Intent(this, VersionCheckService.class));
+        builder.setPauseRequestTime(10L);
+        builder.setDownloadAPKPath("/storage/emulated/0/ams/");
+        //更新界面选择
+        CustomVersionDialogActivity.customVersionDialogIndex = 2;
+        //更改下载界面
+        CustomVersionDialogActivity.isCustomDownloading = true;
+        //强制更新
+        CustomVersionDialogActivity.isForceUpdate = true;
+        builder.setCustomDownloadActivityClass(CustomVersionDialogActivity.class);
+        //强制重新下载
+        builder.setForceRedownload(true);
+        AllenChecker.startVersionCheck(this, builder.build());
     }
 
     /**

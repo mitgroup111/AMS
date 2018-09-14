@@ -38,7 +38,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light"
         android:name=".application.MyApplication">
-
+        <service
+            android:name=".service.VersionCheckService"
+            android:enabled="true"
+            android:exported="true" />
 
         <activity
             android:name=".activity.SplashActivity"
@@ -51,6 +54,10 @@
             </intent-filter>
         </activity>
         <activity android:name=".activity.MainActivity" />
+        <activity android:name=".activity.LoginActivity" />
+        <activity
+            android:name=".activity.CustomVersionDialogActivity"
+            android:theme="@style/versionCheckLibvtransparentTheme" />
     </application>
 
 </manifest>

@@ -44,9 +44,9 @@ public class Constants {
     /**
      * 阳光钣喷web地址
      */
-    public static final String WEB_DOMAIN = "http://teach.hems999.com";//web
+    public static final String WEB_DOMAIN = "http://teach.hems999.com/AMS";//web
 
-    public static final String APK_VERSION_ADDRESS = "http://teach.hems999.com/upload/AMS.apk";//web
+    public static final String APK_VERSION_ADDRESS = "http://teach.hems999.com/AMS/upload/AMS.apk";//web
     /**** old ****/
 
 

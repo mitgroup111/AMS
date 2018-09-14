@@ -13,9 +13,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import com.allenliu.versionchecklib.core.AllenChecker;
+import com.allenliu.versionchecklib.core.VersionParams;
 import com.mit.ams.R;
 import com.mit.ams.common.Constants;
 import com.mit.ams.fragment.CenterItemFragment;
+import com.mit.ams.service.VersionCheckService;
 
 public class MainActivity extends BaseActivity  {
 
@@ -39,11 +42,8 @@ public class MainActivity extends BaseActivity  {
         initFragment();
         //界面初始化
         initView();
-        //检查更新
-//        checkVersion();
+
     }
-
-
 
     private void initView() {
         drawerLayout = (DrawerLayout) findViewById(R.id.activity_na);
