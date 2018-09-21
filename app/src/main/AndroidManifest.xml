@@ -38,10 +38,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light"
         android:name=".application.MyApplication">
-        <service
-            android:name=".service.VersionCheckService"
-            android:enabled="true"
-            android:exported="true" />
 
         <activity
             android:name=".activity.SplashActivity"
