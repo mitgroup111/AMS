@@ -322,7 +322,7 @@ public class AddMaintainFragment extends Fragment {
                         //跳转第二步
                         FragmentManager manager = activity.getSupportFragmentManager();
                         FragmentTransaction transaction = manager.beginTransaction();
-                        transaction.replace(R.id.content_fragment, new MaintainFragment());
+//                        transaction.replace(R.id.content_fragment, new MaintainFragment());
                         transaction.commit();
                     }
                     break;
@@ -348,7 +348,7 @@ public class AddMaintainFragment extends Fragment {
             case android.R.id.home:   //返回键的id
                 FragmentManager manager = activity.getSupportFragmentManager();
                 FragmentTransaction transaction = manager.beginTransaction();
-                transaction.replace(R.id.content_fragment, new MaintainFragment());
+//                transaction.replace(R.id.content_fragment, new MaintainFragment());
                 transaction.commit();
                 return false;
             default:

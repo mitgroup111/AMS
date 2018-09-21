@@ -114,9 +114,9 @@ public class FindPwdFragment extends Fragment {
                     FragmentTransaction transaction = manager.beginTransaction();
                     Bundle bundle = new Bundle();
                     bundle.putString("mobile", tel);
-                    ResetPwdFragment resetPwdFragment = new ResetPwdFragment();
-                    resetPwdFragment.setArguments(bundle);
-                    transaction.replace(R.id.content_fragment, resetPwdFragment);
+//                    ResetPwdFragment resetPwdFragment = new ResetPwdFragment();
+//                    resetPwdFragment.setArguments(bundle);
+//                    transaction.replace(R.id.content_fragment, resetPwdFragment);
                     transaction.commit();
                     break;
                 case R.id.get_vali:
@@ -241,7 +241,7 @@ public class FindPwdFragment extends Fragment {
                         //跳转到用户中心
                         FragmentManager manager = activity.getSupportFragmentManager();
                         FragmentTransaction transaction = manager.beginTransaction();
-                        transaction.replace(R.id.content_fragment, new CenterFragment());
+//                        transaction.replace(R.id.content_fragment, new CenterFragment());
                         transaction.commit();
                     }
                     break;

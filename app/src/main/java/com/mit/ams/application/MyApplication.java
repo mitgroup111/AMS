@@ -4,6 +4,7 @@ import android.app.Application;
 
 import com.blankj.utilcode.util.Utils;
 import com.mit.ams.common.OkHttpUtils.OkHttpUtils;
+import com.squareup.leakcanary.LeakCanary;
 
 import org.xutils.x;
 
@@ -16,6 +17,10 @@ public class MyApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        if (LeakCanary.isInAnalyzerProcess(this)) {
+            return;
+        }
+        LeakCanary.install(this);
 //        OkHttpUtils.initOkHttp(this);
 //        SDKInitializer.initialize(this);
         Utils.init(this);

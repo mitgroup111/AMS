@@ -1,10 +1,12 @@
 package com.mit.ams.activity;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -13,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.mit.ams.R;
+import com.mit.ams.common.Constants;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -34,18 +37,38 @@ public class BaseActivity extends AppCompatActivity {
     //自定义ActionBar
     private ActionBar actionBar;
     private TextView actionbarTitle;
-    public static String title = "AMS钣喷中心信息管理系统";//ActionBar的标题
+
+    private static final int REQUEST_EXTERNAL_STORAGE = 1;
+    private static String[] PERMISSIONS_STORAGE = {
+            "android.permission.READ_EXTERNAL_STORAGE",
+            "android.permission.WRITE_EXTERNAL_STORAGE" };
+
+    public static void verifyStoragePermissions(Activity activity) {
+
+        try {
+            //检测是否有写的权限
+            int permission = ActivityCompat.checkSelfPermission(activity,
+                    "android.permission.WRITE_EXTERNAL_STORAGE");
+            if (permission != PackageManager.PERMISSION_GRANTED) {
+                // 没有写的权限，去申请写的权限，会弹出对话框
+                ActivityCompat.requestPermissions(activity, PERMISSIONS_STORAGE,REQUEST_EXTERNAL_STORAGE);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        verifyStoragePermissions(this);
         //把标题栏改为登陆
         actionBar = getSupportActionBar();
         actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         actionBar.setCustomView(R.layout.text_titlebar);//自定义ActionBar布局
         actionbarTitle = (TextView) actionBar.getCustomView().findViewById(R.id.actionbar_title);
 
-        actionbarTitle.setText(title);
+        actionbarTitle.setText(Constants.title);
 
         String sha = sHA1(this);
         Log.d("jjjjjjjjjjjjjjjjjjjjjjj" , sha);

@@ -354,7 +354,7 @@ public class DamagePhotoFragment extends Fragment {
                 if (requestCode == REQUEST_CODE_VEHICLE_LICENSE) {
                     vinImg = true;
                     pathImage = Environment.getExternalStorageDirectory() + "/xiucheba/" + vinName + ".JPG";
-                    RecognizeService.recVehicleLicense(Environment.getExternalStorageDirectory() + "/xiucheba/" + vinName + ".JPG",
+                    RecognizeService.recVehicleLicense(this.activity,Environment.getExternalStorageDirectory() + "/xiucheba/" + vinName + ".JPG",
                             new RecognizeService.ServiceListener() {
                                 @Override
                                 public void onResult(String result) {
@@ -466,7 +466,7 @@ public class DamagePhotoFragment extends Fragment {
                         //跳转到用户中心
                         FragmentManager manager = activity.getSupportFragmentManager();
                         FragmentTransaction transaction = manager.beginTransaction();
-                        transaction.replace(R.id.content_fragment, new TipsFragment());
+//                        transaction.replace(R.id.content_fragment, new TipsFragment());
                         transaction.commit();
                     } else {
                         if (progressDialog != null) {
@@ -602,7 +602,7 @@ public class DamagePhotoFragment extends Fragment {
     }
 
     private void initAccessToken() {
-        OCR.getInstance().initAccessToken(new OnResultListener<AccessToken>() {
+        OCR.getInstance(this.activity).initAccessToken(new OnResultListener<AccessToken>() {
             @Override
             public void onResult(AccessToken accessToken) {
                 String token = accessToken.getAccessToken();

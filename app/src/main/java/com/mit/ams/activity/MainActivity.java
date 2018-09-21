@@ -1,6 +1,5 @@
 package com.mit.ams.activity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -13,12 +12,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
-import com.allenliu.versionchecklib.core.AllenChecker;
-import com.allenliu.versionchecklib.core.VersionParams;
 import com.mit.ams.R;
 import com.mit.ams.common.Constants;
+import com.mit.ams.fragment.AddCarFragment;
 import com.mit.ams.fragment.CenterItemFragment;
-import com.mit.ams.service.VersionCheckService;
 
 public class MainActivity extends BaseActivity  {
 
@@ -69,8 +66,9 @@ public class MainActivity extends BaseActivity  {
                     case R.id.inputCar:
                         //车辆信息管理
                         bundle.putString("center_item_web_url", Constants.ARS_WEB_URL_1 + Constants.ARS_CAR_URL );
-                        centerItemFragment.setArguments(bundle);
-                        transaction.replace(R.id.content_fragment, centerItemFragment);
+                        AddCarFragment addCarFragment = new AddCarFragment();
+                        addCarFragment.setArguments(bundle);
+                        transaction.replace(R.id.content_fragment, addCarFragment);
                         transaction.commit();
                         drawerLayout.closeDrawers();
                         break;

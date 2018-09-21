@@ -9,8 +9,8 @@ import android.os.Environment;
 import java.io.File;
 
 public class FileUtil {
-    public static File getSaveFile(String fileName) {
-        File file = new File(Environment.getExternalStorageDirectory() + "/xiucheba/", fileName);
+    public static File getSaveFile(Context context) {
+        File file = new File(context.getFilesDir(), "pic.jpg");
         return file;
     }
 }

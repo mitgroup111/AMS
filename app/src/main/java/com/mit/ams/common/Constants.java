@@ -1,5 +1,7 @@
 package com.mit.ams.common;
 
+import com.mit.ams.R;
+
 /**
  * Created by Administrator on 17.7.7.
  */
@@ -100,4 +102,6 @@ public class Constants {
      * webservice认证密码
      */
     public static final String WS_PWD = "ars3g";
+
+    public static String title = "AMS钣喷中心信息管理系统";//ActionBar的标题
 }

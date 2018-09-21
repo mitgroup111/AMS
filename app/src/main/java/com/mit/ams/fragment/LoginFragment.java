@@ -136,7 +136,7 @@ public class LoginFragment extends Fragment {
                     break;
                 case R.id.register_tv:
                     //跳转到注册
-                    transaction.replace(R.id.content_fragment, new RegistFragment());
+//                    transaction.replace(R.id.content_fragment, new RegistFragment());
                     transaction.commit();
                     break;
             }
@@ -284,7 +284,7 @@ public class LoginFragment extends Fragment {
                         //跳转到用户中心
                         FragmentManager manager = activity.getSupportFragmentManager();
                         FragmentTransaction transaction = manager.beginTransaction();
-                        transaction.replace(R.id.content_fragment, new CenterFragment());
+//                        transaction.replace(R.id.content_fragment, new CenterFragment());
                         transaction.commit();
                     }
                     break;
@@ -302,7 +302,7 @@ public class LoginFragment extends Fragment {
             case android.R.id.home:   //返回键的id
                 FragmentManager manager = activity.getSupportFragmentManager();
                 FragmentTransaction transaction = manager.beginTransaction();
-                transaction.replace(R.id.content_fragment, new CenterFragment());
+//                transaction.replace(R.id.content_fragment, new CenterFragment());
                 transaction.commit();
                 return false;
             default:

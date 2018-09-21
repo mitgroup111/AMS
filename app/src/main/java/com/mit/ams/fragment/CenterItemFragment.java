@@ -33,7 +33,7 @@ import com.mit.ams.common.WebViewCookieUtil;
 
 public class CenterItemFragment extends Fragment {
 
-    private String TAG = AuthTwoFragment.class.getSimpleName();
+    private String TAG = CenterItemFragment.class.getSimpleName();
 
     private WebView webView;
     private String center_item_web_url = Constants.ARS_WEB_URL;
@@ -73,7 +73,11 @@ public class CenterItemFragment extends Fragment {
         //把标题栏改为登陆
 
 //        imageView1 = (ImageView) actionBar.getCustomView().findViewById(R.id.img1);
-       //actionBar.setDisplayHomeAsUpEnabled(true);// 显示返回按钮
+        actionBar = activity.getSupportActionBar();
+        actionBar.setCustomView(R.layout.text_titlebar);
+        TextView  actionbarTitle = (TextView) actionBar.getCustomView().findViewById(R.id.actionbar_title);
+        actionbarTitle.setText(Constants.title);
+       actionBar.setDisplayHomeAsUpEnabled(false);// 显示返回按钮
         setHasOptionsMenu(true);//这个需要，不然onOptionsItemSelected方法不会被调用
 
 
