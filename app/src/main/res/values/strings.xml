@@ -34,6 +34,7 @@
     <string name="submit">提交</string>
     <string name="damage_desc">请填写故障描述……</string>
     <string name="pic_desc">请按提示上传照片，最多上传6张照片</string>
+    <string name="pic_desc1">请扫描车辆车辆行驶证</string>
 
     <string name="take_photo">拍摄</string>
     <string name="pick_photo">从相册选择</string>
