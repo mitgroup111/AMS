@@ -1,20 +1,17 @@
-package com.mit.ams.fragment;
+package com.mit.ams.activity;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -24,7 +21,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.JavascriptInterface;
-import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -40,21 +36,22 @@ import com.baidu.ocr.sdk.exception.OCRError;
 import com.baidu.ocr.sdk.model.AccessToken;
 import com.baidu.ocr.ui.camera.CameraActivity;
 import com.mit.ams.R;
+import com.mit.ams.application.MyApplication;
 import com.mit.ams.common.Constants;
-import com.mit.ams.common.CookieUtil;
 import com.mit.ams.common.FileUtil;
 import com.mit.ams.common.RecognizeService;
-import com.mit.ams.common.WebViewCookieUtil;
-import com.mit.ams.common.X5WebView;
+
+import java.io.File;
 
 /**
- * Created by 刘鹏飞 on 17.7.6.
+ * An example full-screen activity that shows and hides the system UI (i.e.
+ * status bar and navigation/system bar) with user interaction.
  */
+public class AddCarActivity extends AppCompatActivity  {
 
-public class AddCarFragment extends Fragment {
-    private String TAG = AddCarFragment.class.getSimpleName();
+    private String TAG = AddCarActivity.class.getSimpleName();
 
-    private X5WebView webView;
+    private WebView webView;
     private String center_item_web_url = Constants.ARS_WEB_URL;
     private AppCompatActivity activity;
     private View view;
@@ -75,39 +72,41 @@ public class AddCarFragment extends Fragment {
 
     private static final String APP_CACAHE_DIRNAME = "/webcache";
 
-    //@SuppressLint({"SetJavaScriptEnabled", "AddJavascriptInterface"})
-    @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        activity = (AppCompatActivity) this.getActivity();
-
-        Bundle bundle = getArguments();
-        titleFlag = bundle.getInt("flag");
-        view = inflater.inflate(R.layout.fragment_maintain, container, false);
-        center_item_web_url = getArguments().getString("center_item_web_url");
-
-        //把标题栏改为登陆
-        actionBar = activity.getSupportActionBar();
-        actionBar.setCustomView(R.layout.text_titlebar);
-        actionbarTitle = (TextView) actionBar.getCustomView().findViewById(R.id.actionbar_title);
-        actionbarTitle.setText(Constants.title);
-        actionBar.setDisplayHomeAsUpEnabled(false);// 显示返回按钮
-        setHasOptionsMenu(true);//这个需要，不然onOptionsItemSelected方法不会被调用
-
-        initView();
-
-        //注册百度OCR
-        initAccessToken();
-        //initAccessTokenWithAkSk();
-        verifyStoragePermissions(activity);
-        return view;
-    }
-
-    private void initView() {
-        Bundle bundle = getArguments();
-        center_item_web_url = bundle.getString("center_item_web_url");
-        webView = (X5WebView) view.findViewById(R.id.ars_webview);
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.fragment_maintain);
+        webView = (WebView) findViewById(R.id.ars_webview);
         webView.setScrollBarStyle(View.SCROLLBARS_INSIDE_OVERLAY);
+        WebSettings settings = webView.getSettings();
+        settings.setSupportZoom(true);  //支持放大缩小
+        settings.setBuiltInZoomControls(true);
+        center_item_web_url =Constants.ARS_WEB_URL_1 + Constants.ARS_CAR_ADD_URL;
+        webView.loadUrl(center_item_web_url);
+        settings.setUseWideViewPort(true);
+        settings.setLoadWithOverviewMode(true);
+        settings.setSaveFormData(true);// 保存表单数据
+        settings.setJavaScriptEnabled(true);
+        webView.setWebViewClient(new WebViewClient());
+        String cacheDirPath = this.getFilesDir().getAbsolutePath() + APP_CACAHE_DIRNAME; //缓存路径
+        settings.setCacheMode(WebSettings.LOAD_NO_CACHE);  //缓存模式
+        settings.setAppCachePath(cacheDirPath); //设置缓存路径
+        settings.setAppCacheEnabled(false); //不开启缓存功能
+
+        webView.addJavascriptInterface(new AddCarActivity.JsInterface(this), "AndroidWebView");
+
+        // 创建WebViewClient对象
+        WebViewClient wvc = new WebViewClient() {
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                // 使用自己的WebView组件来响应Url加载事件，而不是使用默认浏览器器加载页面
+                webView.loadUrl(url);
+                // 消耗掉这个事件。Android中返回True的即到此为止吧,事件就会不会冒泡传递了，我们称之为消耗掉
+                return true;
+            }
+        };
+        webView.setWebViewClient(wvc);
+
         webView.setOnKeyListener(new View.OnKeyListener() {
 
             public boolean onKey(View v, int keyCode, KeyEvent event) {
@@ -119,10 +118,9 @@ public class AddCarFragment extends Fragment {
             }
 
         });
-        webView.addJavascriptInterface(new JsInterface(this.getActivity()), "AndroidWebView");
-        webView.loadUrl(center_item_web_url);
-        String cookies =  CookieUtil.getCookie(activity);//获取navate登陆时候获取的cookie
-        WebViewCookieUtil.synchronousWebCookies(activity,center_item_web_url,cookies);//设置webview的cookie
+        //注册百度OCR
+        initAccessToken();
+        //initAccessTokenWithAkSk();
     }
 
     private class JsInterface {
@@ -156,10 +154,6 @@ public class AddCarFragment extends Fragment {
         @Override
         public void handleMessage(Message msg) {
             switch (msg.what) {
-                case 1: {
-                    webViewGoBack();
-                    break;
-                }
                 case MSG_HYXY: {
                     //调用获取车牌号
                     Log.e(TAG, "主线程 调用获取车牌号百度" );
@@ -182,7 +176,7 @@ public class AddCarFragment extends Fragment {
         }
         Log.e(TAG, "getPlate 调用获取车牌号百度" );
         String path =  FileUtil.getSaveFile().getAbsolutePath();
-        Intent intent = new Intent(activity, CameraActivity.class);
+        Intent intent = new Intent(this, CameraActivity.class);
         intent.putExtra(CameraActivity.KEY_OUTPUT_FILE_PATH,
                 path);
         intent.putExtra(CameraActivity.KEY_CONTENT_TYPE,
@@ -196,8 +190,8 @@ public class AddCarFragment extends Fragment {
             return;
         }
         Log.e(TAG, "getVin 调用获取VIN百度" );
-        String path =  FileUtil.getSaveFile( ).getAbsolutePath();
-        Intent intent = new Intent(activity.getApplicationContext(), CameraActivity.class);
+        String path =  FileUtil.getSaveFile().getAbsolutePath();
+        Intent intent = new Intent(this, CameraActivity.class);
         intent.putExtra(CameraActivity.KEY_OUTPUT_FILE_PATH,
                 path);
         intent.putExtra(CameraActivity.KEY_CONTENT_TYPE,
@@ -205,14 +199,6 @@ public class AddCarFragment extends Fragment {
         startActivityForResult(intent, REQUEST_CODE_GENERAL_BASIC);
     }
 
-    private void webViewGoBack() {
-        webView.goBack();
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        return super.onOptionsItemSelected(item);
-    }
 
     private boolean hasGotToken = false;
 
@@ -229,23 +215,8 @@ public class AddCarFragment extends Fragment {
             "android.permission.WRITE_EXTERNAL_STORAGE",
             "android.permission.CAMERA"};
 
-    public static void verifyStoragePermissions(Activity activity) {
-        try {
-            Log.e("SSSSSS", "---请求权限成功==");
-            //检测是否有写的权限
-            int permission = ActivityCompat.checkSelfPermission(activity, "android.permission.WRITE_EXTERNAL_STORAGE");
-            if (permission != PackageManager.PERMISSION_GRANTED) {
-                // 没有写的权限，去申请写的权限，会弹出对话框
-                ActivityCompat.requestPermissions(activity, PERMISSIONS_STORAGE,REQUEST_EXTERNAL_STORAGE);
-            }
-        } catch (Exception e) {
-            Log.e("SSSSSS", "---请求权限失败==" + e.getMessage());
-            e.printStackTrace();
-        }
-    }
-
     private void initAccessToken() {
-        OCR.getInstance(this.activity).initAccessToken(new OnResultListener<AccessToken>() {
+        OCR.getInstance(this).initAccessToken(new OnResultListener<AccessToken>() {
             @Override
             public void onResult(AccessToken accessToken) {
                 String token = accessToken.getAccessToken();
@@ -264,16 +235,16 @@ public class AddCarFragment extends Fragment {
                 }
                 Log.e(TAG, "licence方式获取token失败" + error.getMessage());
             }
-        }, activity.getApplicationContext());
+        }, this.getApplicationContext());
     }
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        if (requestCode == 1) {
-            Log.e(TAG, "---请求权限成功==");
-        } else {
-            Log.e(TAG, "---请求权限失败==");
-        }
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            initAccessToken();
+        } else {
+            Toast.makeText(getApplicationContext(), "需要android.permission.READ_PHONE_STATE", Toast.LENGTH_LONG).show();
+        }
     }
 
     @Override
@@ -295,7 +266,7 @@ public class AddCarFragment extends Fragment {
             // 识别成功回调，行驶证识别
             if (requestCode == REQUEST_CODE_VEHICLE_LICENSE && resultCode == Activity.RESULT_OK) {
                 Log.e(TAG, "识别成功回调，行驶证识别" );
-                RecognizeService.recVehicleLicense(this.getContext(),FileUtil.getSaveFile().getAbsolutePath(),
+                RecognizeService.recVehicleLicense(this,FileUtil.getSaveFile().getAbsolutePath(),
                         new RecognizeService.ServiceListener() {
                             @Override
                             public void onResult(String result) {
@@ -307,7 +278,7 @@ public class AddCarFragment extends Fragment {
             // 识别成功回调，通用文字识别
             if (requestCode == REQUEST_CODE_GENERAL_BASIC && resultCode == Activity.RESULT_OK) {
                 Log.e(TAG, "识别成功回调，通用文字识别" );
-                RecognizeService.recGeneralBasic(this.getContext(), FileUtil.getSaveFile().getAbsolutePath(),
+                RecognizeService.recGeneralBasic(this, FileUtil.getSaveFile().getAbsolutePath(),
                         new RecognizeService.ServiceListener() {
                             @Override
                             public void onResult(String result) {
@@ -336,7 +307,7 @@ public class AddCarFragment extends Fragment {
             // 识别成功回调，车牌识别
             if (requestCode == REQUEST_CODE_LICENSE_PLATE && resultCode == Activity.RESULT_OK) {
                 Log.e(TAG, "识别成功回调，车牌识别" );
-                RecognizeService.recLicensePlate(this.getContext(), FileUtil.getSaveFile().getAbsolutePath(),
+                RecognizeService.recLicensePlate(this, FileUtil.getSaveFile().getAbsolutePath(),
                         new RecognizeService.ServiceListener() {
                             @Override
                             public void onResult(String result) {
@@ -370,14 +341,18 @@ public class AddCarFragment extends Fragment {
 
 
     private void showToast(String msg) {
-        Toast.makeText(activity, msg, Toast.LENGTH_LONG).show();
+        Toast.makeText(this, msg, Toast.LENGTH_LONG).show();
     }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+    }
     /**
      * 用明文ak，sk初始化
      */
     private void initAccessTokenWithAkSk() {
-        OCR.getInstance(activity).initAccessTokenWithAkSk(new OnResultListener<AccessToken>() {
+        OCR.getInstance(this).initAccessTokenWithAkSk(new OnResultListener<AccessToken>() {
             @Override
             public void onResult(AccessToken result) {
                 String token = result.getAccessToken();
@@ -389,7 +364,6 @@ public class AddCarFragment extends Fragment {
                 error.printStackTrace();
                 Log.e("AK，SK方式获取token失败",error.getMessage());
             }
-        }, activity.getApplicationContext(),  "LZDOtMZGHZCTyApG2ywX7HlG", "jbqwZLcPyNbfr6yoXSgfBFIOEloe3e5D");
+        }, this.getApplicationContext(),  "LZDOtMZGHZCTyApG2ywX7HlG", "jbqwZLcPyNbfr6yoXSgfBFIOEloe3e5D");
     }
 }
-

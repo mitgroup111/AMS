@@ -2,6 +2,7 @@ package com.mit.ams.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Handler;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -31,9 +32,13 @@ public class SplashActivity extends AppCompatActivity  {
      * 创建一个xiucheba的文件夹
      */
     private void createFolder(){
-        File file = new File("/storage/emulated/0/ams/");
+        File file = new File(Environment.getExternalStorageDirectory()+"/ams/");
         if (!file.exists()) {
             file.mkdir();
+        }
+        File file1 = new File(Environment.getExternalStorageDirectory()+"/ams/webcache");
+        if (!file1.exists()) {
+            file1.mkdir();
         }
     }
 

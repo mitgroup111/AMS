@@ -2,6 +2,7 @@ package com.mit.ams.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -68,7 +69,7 @@ public class LoginActivity extends AppCompatActivity  {
                 .setService(VersionCheckService.class);
         stopService(new Intent(this, VersionCheckService.class));
         builder.setPauseRequestTime(10L);
-        builder.setDownloadAPKPath("/storage/emulated/0/ams/");
+        builder.setDownloadAPKPath(Environment.getExternalStorageDirectory()+"/ams/");
         //更新界面选择
         CustomVersionDialogActivity.customVersionDialogIndex = 2;
         //更改下载界面
@@ -154,6 +155,7 @@ public class LoginActivity extends AppCompatActivity  {
 
                             //跳转到 mainActivity
                             Intent intent=new Intent(LoginActivity.this, MainActivity.class); startActivity(intent);
+
 
                         } catch (IOException e) {
                             e.printStackTrace();

@@ -15,7 +15,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.mit.ams.R;
+import com.mit.ams.application.MyApplication;
 import com.mit.ams.common.Constants;
+import com.squareup.leakcanary.RefWatcher;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -85,6 +87,12 @@ public class BaseActivity extends AppCompatActivity {
     }
 
     @Override
+    protected void onRestart() {
+        super.onRestart();
+        Log.d(this.getClass().getName(), "---------onRestart ");
+    }
+
+    @Override
     protected void onResume() {
         super.onResume();
         activityState = ACTIVITY_RESUME;
@@ -106,16 +114,12 @@ public class BaseActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onRestart() {
-        super.onRestart();
-        Log.d(this.getClass().getName(), "---------onRestart ");
-    }
-
-    @Override
     protected void onDestroy() {
         super.onDestroy();
         activityState = ACTIVITY_DESTROY;
         Log.d(this.getClass().getName(), "---------onDestroy ");
+        RefWatcher refWatcher = MyApplication.getRefWatcher(this);
+        refWatcher.watch(this);
         this.finish();
     }
 

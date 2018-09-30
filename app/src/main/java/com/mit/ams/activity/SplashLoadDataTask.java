@@ -2,21 +2,15 @@ package com.mit.ams.activity;
 
 import android.content.Context;
 import android.os.AsyncTask;
-import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import com.mit.ams.common.MessageEvent;
-import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.mit.ams.bean.CityLocation;
 import com.mit.ams.common.StringUtils;
 import com.mit.ams.utils.LifePreferences;
-import com.mit.ams.utils.WSClient;
 
 import org.greenrobot.eventbus.EventBus;
-
-import java.util.List;
 
 public class SplashLoadDataTask extends AsyncTask<Void, Void, Integer> {
 
@@ -75,7 +69,8 @@ public class SplashLoadDataTask extends AsyncTask<Void, Void, Integer> {
                     final String[] key = {"userId"};
                     final String[] value = {userId};
                     //String rs = "{\"content\":[{\"address\":\"烟台市开发区五指山路1号麦特集团\",\"city\":\"烟台市\",\"id\":\"232\",\"lat\":\"37.537647\",\"lng\":\"121.277833\",\"mobile\":\"1322222222\",\"repair_fty_name\":\"我是一个修理厂\"}],\"status\":1}";
-                    String rs = WSClient.soapGetInfo("getCityLocations", key, value);
+
+                    String rs = "";
                     if (StringUtils.isEmpty(rs)) {
                         Log.e(TAG, "获取城市经纬度数据出错,无数据返回");
                     } else {

@@ -1,5 +1,6 @@
 package com.mit.ams.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -13,6 +14,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.mit.ams.R;
+import com.mit.ams.application.MyApplication;
 import com.mit.ams.common.Constants;
 import com.mit.ams.fragment.AddCarFragment;
 import com.mit.ams.fragment.CenterItemFragment;
@@ -71,6 +73,8 @@ public class MainActivity extends BaseActivity  {
                         transaction.replace(R.id.content_fragment, addCarFragment);
                         transaction.commit();
                         drawerLayout.closeDrawers();
+//                        //跳转到 mainActivity
+//                        Intent intent=new Intent(MainActivity.this, AddCarActivity.class); startActivity(intent);
                         break;
                     case R.id.kanban:
                         //排程信息

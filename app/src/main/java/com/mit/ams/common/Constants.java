@@ -28,6 +28,8 @@ public class Constants {
      */
     public final static String ARS_CAR_URL = "android/customer/listCar";
 
+    public final static String ARS_CAR_ADD_URL = "android/customer/addCar";
+
     /**
      * 阳光钣喷工单信息
      */
@@ -57,51 +59,6 @@ public class Constants {
      **/
     public final static String ARS_WEB_URL = "http://www.arsauto.com.cn/";
 
-    /**
-     * webservice命名空间
-     */
-    public static final String NAME_SPACE = "http://services.dsws.mybatis.ds.com/";
-
-    /**
-     * 用到服务的主机地址
-     */
-    //public static final String WEB_SERVICE_DOMAIN = "http://192.168.206.126:7001";//webservice
-    public static final String WEB_SERVICE_DOMAIN = "http://51ars.cn";//webservice
-
-
-    /**
-     * webservice地址
-     */
-//    public static final String BASE_URL = "http://192.168.208.208/dsWebService/service/IDsWS";
-  public static final String BASE_URL= WEB_SERVICE_DOMAIN + "/dsWebService/service/IDsWS";
-//    public static final String BASE_URL = "http://www.51ars.com/dsWebService/service/IDsWS";
-
-
-    /**
-     * 访问图片路径
-     */
-    public static final String IMG_URL = WEB_SERVICE_DOMAIN + "/dsWebService/upload";
-//	public static final String IMG_URL= "http://192.168.206.126:7001/dsWebService/upload";
-
-    /**
-     * 个人中心各项目的web地址
-     *
-     */
-    public static final String YUYUE_URL = WEB_DOMAIN + "/ListWeixiuYuyue.do?user_id=REPLACE_USERID&pageNo=1";
-    public static final String DIANPING_URL = WEB_DOMAIN + "/ListDianping.do?user_id=REPLACE_USERID&pageNo=1";
-    public static final String DINGSUN_URL = WEB_DOMAIN + "/listDingsun.do?flag=2&user_id=REPLACE_USERID&pageNo=1";
-    public static final String WEIXIU_URL = WEB_DOMAIN + "//listWeixiu.do?flag=1&user_id=REPLACE_USERID&pageNo=1";
-    public static final String BAOYANG_URL = WEB_DOMAIN + "/listMaint.do?user_id=REPLACE_USERID";
-    public static final String CAR_URL = WEB_DOMAIN + "/gotCarList.do?user_id=REPLACE_USERID";
-    public static final String MSG_URL = WEB_DOMAIN + "/toUserInfo.do?user_id=REPLACE_USERID";
-    /**
-     * webservice认证用户名
-     */
-    public static final String WS_UNAME = "ars";
-    /**
-     * webservice认证密码
-     */
-    public static final String WS_PWD = "ars3g";
 
     public static String title = "AMS钣喷中心信息管理系统";//ActionBar的标题
 }
