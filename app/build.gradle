@@ -42,6 +42,7 @@ dependencies {
     implementation files('libs/httpmime-4.1.2.jar')
     implementation files('libs/IndoorscapeAlbumPlugin.jar')
     implementation files('libs/ocr-sdk.jar')
+    implementation files('libs/tbs_sdk_thirdapp_v3.6.0.1310_43612_sharewithdownload_withoutGame_obfs_20180706_163319.jar')
     implementation 'com.android.support:appcompat-v7:25.3.0'
     implementation 'com.squareup.okhttp3:okhttp:3.8.1'
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
